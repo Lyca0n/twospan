@@ -10,7 +10,6 @@ pub fn monitor_loop(initial_app: &str, duration: Duration, tracker_tx: Sender<St
         thread::sleep(duration);
         let change = get_window_name();
         if change != intial_name.to_string() {
-            println!("Changed from {} to {}", initial_app, change);
             intial_name = change.clone();
             if tracker_tx.send(change).is_err() {
                 break;
